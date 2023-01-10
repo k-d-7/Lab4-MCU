@@ -99,13 +99,12 @@ int main(void)
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
 //  SCH_Add_Task(led1test, 200, 0);
+  SCH_Add_Task(getKeyInput, 0, 1);
+  SCH_Add_Task(timerRun, 0, 1);
   while (1)
   {
 
 	SCH_Dispatch_Tasks();
-	if (isPressedButton() == 1) {
-		SCH_Add_Task(led1test, 0, 0);
-	}
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -227,7 +226,7 @@ static void MX_GPIO_Init(void)
 void HAL_TIM_PeriodElapsedCallback(TIM_HandleTypeDef *htim) {
 	 SCH_Update();
 	 timerRun();
-	 getKeyInput();
+//	 getKeyInput();
  }
 /* USER CODE END 4 */
 

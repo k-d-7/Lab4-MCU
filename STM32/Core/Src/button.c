@@ -9,16 +9,16 @@ int keyReg4 = NORMAL_STATE;
 
 int timeOut = 100;
 
-int isPressedButton() {
-	if (button_flag == 1) {
-		button_flag = 0;
-		return 1;
-	}
-	return 0;
-}
+//int isPressedButton() {
+//	if (button_flag == 1) {
+//		button_flag = 0;
+//		return 1;
+//	}
+//	return 0;
+//}
 
 void subKeyProcess() {
-	button_flag = 1;
+	HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
 }
 
 void getKeyInput() {
