@@ -58,8 +58,24 @@ static void MX_TIM2_Init(void);
 
 /* Private user code ---------------------------------------------------------*/
 /* USER CODE BEGIN 0 */
-void led1test() {
-	HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+void triggerLedA() {
+	HAL_GPIO_TogglePin(LED_RED_A_GPIO_Port, LED_RED_A_Pin);
+}
+
+void triggerLedB() {
+	HAL_GPIO_TogglePin(LED_RED_B_GPIO_Port, LED_RED_B_Pin);
+}
+
+void triggerLedC() {
+	HAL_GPIO_TogglePin(LED_RED_C_GPIO_Port, LED_RED_C_Pin);
+}
+
+void triggerLedD() {
+	HAL_GPIO_TogglePin(LED_RED_D_GPIO_Port, LED_RED_D_Pin);
+}
+
+void triggerLedE() {
+	HAL_GPIO_TogglePin(LED_RED_E_GPIO_Port, LED_RED_E_Pin);
 }
 /* USER CODE END 0 */
 
@@ -101,6 +117,11 @@ int main(void)
 //  SCH_Add_Task(led1test, 200, 0);
   SCH_Add_Task(getKeyInput, 0, 1);
   SCH_Add_Task(timerRun, 0, 1);
+  SCH_Add_Task(triggerLedA, 50 , 1);
+  SCH_Add_Task(triggerLedB, 100 , 1);
+  SCH_Add_Task(triggerLedC, 150 , 1);
+  SCH_Add_Task(triggerLedD, 200 , 1);
+  SCH_Add_Task(triggerLedE, 250 , 1);
   while (1)
   {
 
@@ -205,14 +226,17 @@ static void MX_GPIO_Init(void)
   __HAL_RCC_GPIOA_CLK_ENABLE();
 
   /*Configure GPIO pin Output Level */
-  HAL_GPIO_WritePin(LED_RED_GPIO_Port, LED_RED_Pin, GPIO_PIN_RESET);
+  HAL_GPIO_WritePin(GPIOA, LED_RED_B_Pin|LED_RED_C_Pin|LED_RED_A_Pin|LED_RED_D_Pin
+                          |LED_RED_E_Pin, GPIO_PIN_RESET);
 
-  /*Configure GPIO pin : LED_RED_Pin */
-  GPIO_InitStruct.Pin = LED_RED_Pin;
+  /*Configure GPIO pins : LED_RED_B_Pin LED_RED_C_Pin LED_RED_A_Pin LED_RED_D_Pin
+                           LED_RED_E_Pin */
+  GPIO_InitStruct.Pin = LED_RED_B_Pin|LED_RED_C_Pin|LED_RED_A_Pin|LED_RED_D_Pin
+                          |LED_RED_E_Pin;
   GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;
   GPIO_InitStruct.Pull = GPIO_NOPULL;
   GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;
-  HAL_GPIO_Init(LED_RED_GPIO_Port, &GPIO_InitStruct);
+  HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);
 
   /*Configure GPIO pin : button_Pin */
   GPIO_InitStruct.Pin = button_Pin;

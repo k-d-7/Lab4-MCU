@@ -18,7 +18,7 @@ int timeOut = 100;
 //}
 
 void subKeyProcess() {
-	HAL_GPIO_TogglePin(LED_RED_GPIO_Port, LED_RED_Pin);
+	HAL_GPIO_TogglePin(LED_RED_A_GPIO_Port, LED_RED_A_Pin);
 }
 
 void getKeyInput() {
